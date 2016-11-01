@@ -3,11 +3,28 @@
 
 {% block content %} 
 contenido pagina 2
+{{ books }}
 
+{% if download_link %}
+  -->{{ download_link }}<--
+{% endif %}
+
+{% if error %}
+  -->{{ error }}<--
+{% endif %}
 
 <form action="" method="POST" class="post-form">{% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
+
+<!-- errores en el formulario-->
+{% if form.errors %}
+    <ul>
+    {% for error in form.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
 {% endblock %}
