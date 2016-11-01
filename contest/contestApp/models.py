@@ -63,6 +63,7 @@ class Participant(models.Model):
     created = models.DateTimeField(
         verbose_name='Fecha del alta',
         auto_now_add=True,
+        auto_now=False,
         blank=True
     )
 
@@ -86,7 +87,8 @@ class Picture(models.Model):
     #objects = PictureManager()
 
     created = models.DateTimeField(
-        verbose_name='Fecha creacion'
+        verbose_name='Fecha creacion',
+        default=datetime.now
     )
 
     url = models.ImageField(

@@ -3,4 +3,22 @@
 
 {% block content %} 
 contenido pagina 3
+
+
+{% if download_link %}
+  -->{{ download_link }}<--
+{% endif %}
+
+{% if error %}
+  -->{{ error }}<--
+{% endif %}
+
+{% if not download_link %}
+<form action="" method="POST" class="post-form" enctype="multipart/form-data">
+  {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Save</button>
+</form>
+{% endif %}
+
 {% endblock %}

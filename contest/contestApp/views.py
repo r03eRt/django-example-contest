@@ -66,8 +66,35 @@ class Pagina2View(FormView):
 
 
 # Index class based view
-class Pagina3View(TemplateView):
-    template_name = 'pagina3.html'
+class Pagina3View(FormView):
+        template_name = 'pagina3.html'
+        form_class = PictureForm
+        success_url = "/pagina3/"
+
+        # Context data
+        def get_context_data(self, **kwargs):
+            context = super(Pagina3View, self).get_context_data(**kwargs)
+            # Pasar por contexto
+            context['books'] = 'hola'
+            #context['num'] = Vote.objects.filter(email='mivoto@gmail.com').count()
+            return context
+
+        # Return if form is valid
+        def form_valid(self, form,  **kwargs):
+            #print(self.request.POST['email'])
+            picture = form.save(commit=False)
+            # Get the data from email
+            #email = form.cleaned_data['email']
+            print(form.cleaned_data)
+            # Validatiosn here
+            picture.save()
+            #return super(Pagina2View, self).form_valid(form)
+            #return self.render_to_response(self.get_context_data(download_link=email))
+            return self.render_to_response(self.get_context_data(download_link='Hecho'))
+
+        # Return if form is invalid
+        def form_invalid(self, form,  **kwargs):
+            return self.render_to_response(self.get_context_data())
 
 
 # Index class based view
