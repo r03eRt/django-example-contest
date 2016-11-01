@@ -16,11 +16,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 
-# For views
-from . import views
+# For Function views
+#from . import views
+
+# For Class bases views
+from .views import IndexView
+
 
 urlpatterns = [
-    url(r'^$', views.index, name='index')
+    # Function view
+    # url(r'^$', views.index, name='index')
+    # Class based biew
+    url(r'^$', IndexView.as_view(), name='index')
 ]
-
-
