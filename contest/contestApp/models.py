@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from datetime import datetime
+
+
 
 
 
@@ -57,9 +60,10 @@ class Participant(models.Model):
         blank=True
     )
 
-    created = models.TimeField(
-        auto_now=True,
-        verbose_name='Fecha del alta'
+    created = models.DateTimeField(
+        verbose_name='Fecha del alta',
+        auto_now_add=True,
+        blank=True
     )
 
     province = models.ForeignKey(
@@ -87,9 +91,11 @@ class Picture(models.Model):
 
     url = models.ImageField(
         max_length=255,
-        verbose_name='Ruta',
+        verbose_name='Imagen',
         upload_to='treasure_images',
-        default='media/default.png'
+        default='default.png',
+        null=True,
+        blank=True
     )
 
     description = models.CharField(
@@ -108,6 +114,8 @@ class Picture(models.Model):
     def image_img(self):
         if self.url:
             return u'<a onclick="return showAddAnotherPopup(this);" href="http://localhost:8000/media/%s" target="_blank"><img src="http://localhost:8000/media/%s" width="125px" height="auto"/></a>' % (self.url,self.url)
+        elif self.url == '':
+            return '(Sin imagen)'
         else:
             return '(Sin imagen)'
     image_img.short_description = 'Foto'
@@ -130,7 +138,8 @@ class Vote(models.Model):
     )
 
     created = models.DateTimeField(
-        verbose_name = 'Fecha voto'
+        verbose_name = 'Fecha voto',
+        auto_now_add=True
     )
 
     email = models.EmailField(
