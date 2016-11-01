@@ -51,6 +51,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#main url
 ROOT_URLCONF = 'contest.urls'
 
 TEMPLATES = [

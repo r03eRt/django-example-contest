@@ -21,17 +21,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.static import serve
 
+# For views
+from . import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('contestApp.urls')),
+    url(r'^$', views.index, name='index')
 ]
 
 
-# add to the bottom of your file
-if settings.DEBUG:
-    urlpatterns += [
-        url(r'^media/(?P<path>.*)$', serve, {
-            'document_root': settings.MEDIA_ROOT,
-        }),
-    ]
