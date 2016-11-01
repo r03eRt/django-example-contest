@@ -20,12 +20,15 @@ from django.conf.urls import url, include
 #from . import views
 
 # For Class bases views
-from .views import IndexView
+from .views import IndexView, Pagina2View, Pagina3View, Pagina4View
 
 
 urlpatterns = [
     # Function view
     # url(r'^$', views.index, name='index')
     # Class based biew
-    url(r'^$', IndexView.as_view(), name='index')
+    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^pagina2/$', Pagina2View.as_view(), name='pagina2'),
+    url(r'^pagina3/$', Pagina3View.as_view(), name='pagina3'),
+    url(r'^pagina4/$', Pagina4View.as_view(), name='pagina4'),
 ]

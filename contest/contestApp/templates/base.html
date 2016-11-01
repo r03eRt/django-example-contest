@@ -14,6 +14,13 @@
   <title>Concurso</title>
 </head>
 <body>
+<ul>
+  <li><a href="{% url 'index' %}">pagina1</a></li>
+  <li><a href="{% url 'pagina2' %}">pagina2</a></li>
+  <li><a href="{% url 'pagina3' %}">pagina3</a></li>
+  <li><a href="{% url 'pagina4' %}">pagina4</a></li>
+</ul>
+
   {% block content %} 
   {% endblock %}
 </body>
