@@ -14,11 +14,33 @@ contenido pagina 3
 {% endif %}
 
 {% if not download_link %}
-<form action="" method="POST" class="post-form" enctype="multipart/form-data">
+<!--
+  <form action="" method="POST" class="post-form" enctype="multipart/form-data">
   {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
+-->
+
+
+<form action="" method="POST" class="post-form" enctype="multipart/form-data">
+  {% csrf_token %}
+    <p>
+      <label for="id_created">Fecha creacion:</label>
+      <input id="id_created" name="created" type="text" value="01/11/2016 22:11:34" />
+      <input id="initial-id_created" name="initial-created" type="hidden" value="2016-11-01 22:11:34" />
+    </p>
+    <p>
+      <label for="id_url">Imagen:</label>
+      <input id="id_url" name="url" type="file" />
+    </p>
+    <p>
+      <label for="id_description">Descripcion:</label>
+      <input id="id_description" maxlength="255" name="description" type="text" />
+    </p>
+    <button type="submit" class="save btn btn-default">Save</button>
+</form>
+
 {% endif %}
 
 {% endblock %}
